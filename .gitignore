@@ -1,41 +1,70 @@
-# Compiled Lua sources
-luac.out
+-- Gui to Lua
+-- Version: 3.2
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+-- Instances:
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel2 = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local UICorner_2 = Instance.new("UICorner")
+local UICorner_3 = Instance.new("UICorner")
 
-# Precompiled Headers
-*.gch
-*.pch
+--Properties:
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.00450580567, 0, 0.135493323, 0)
+Frame.Size = UDim2.new(0, 180, 0, 85)
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+TextLabel2.Name = "TextLabel2"
+TextLabel2.Parent = Frame
+TextLabel2.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+TextLabel2.Position = UDim2.new(0.105043456, 0, -0.0769297853, 0)
+TextLabel2.Size = UDim2.new(0, 142, 0, 29)
+TextLabel2.Font = Enum.Font.Highway
+TextLabel2.Text = "FPS Gui 1.0"
+TextLabel2.TextColor3 = Color3.fromRGB(202, 99, 217)
+TextLabel2.TextScaled = true
+TextLabel2.TextSize = 14.000
+TextLabel2.TextWrapped = true
 
+UICorner.Parent = TextLabel2
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+TextLabel.Position = UDim2.new(0.0157666523, 0, 0.424055189, 0)
+TextLabel.Size = UDim2.new(0, 173, 0, 41)
+TextLabel.Font = Enum.Font.Highway
+TextLabel.TextColor3 = Color3.fromRGB(202, 99, 217)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+UICorner_2.Parent = TextLabel
+
+UICorner_3.Parent = Frame
+
+-- Scripts:
+
+local function EHYUFP_fake_script() -- TextLabel.LocalScript 
+	local script = Instance.new('LocalScript', TextLabel)
+
+	local frames = 0
+	
+	game:GetService("RunService").RenderStepped:Connect(function()
+		frames += 1
+	end)
+	
+	while wait(1) do
+		script.Parent.Text = "FPS: " .. frames
+		frames = 0
+	end
+end
+coroutine.wrap(EHYUFP_fake_script)()
